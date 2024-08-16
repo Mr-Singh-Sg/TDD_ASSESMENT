@@ -42,6 +42,14 @@ class TestStringCalculator(unittest.TestCase):
         result = self.calculator.add(input_data)
         self.assertEqual(sum(data_list), result)
 
+    def test_add_number_to_raise_error(self):
+        """
+        Test cases for unsupported data type
+        """
+        self.assertRaises(TypeError, self.calculator.add, 1, 3, 89)
+        self.assertRaises(TypeError, self.calculator.add, [1, 3, 89])
+        self.assertRaises(TypeError, self.calculator.add, ["1, 3, 89"])
+
 
 if __name__ == "__main__":
     unittest.main()
