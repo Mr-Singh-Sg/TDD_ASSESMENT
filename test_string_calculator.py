@@ -50,6 +50,17 @@ class TestStringCalculator(unittest.TestCase):
         self.assertRaises(TypeError, self.calculator.add, [1, 3, 89])
         self.assertRaises(TypeError, self.calculator.add, ["1, 3, 89"])
 
+    def test_add_to_handle_new_line_between_numbers(self):
+        """
+        Test cases for adding new line in data
+        """
+
+        result = self.calculator.add("1\n2,3")
+        self.assertEqual(1 + 2 + 3, result)
+
+        result = self.calculator.add("//;\n100;\n150;\n200")
+        self.assertEqual(100 + 150 + 200, result)
+
 
 if __name__ == "__main__":
     unittest.main()
