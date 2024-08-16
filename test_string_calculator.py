@@ -61,6 +61,21 @@ class TestStringCalculator(unittest.TestCase):
         result = self.calculator.add("//;\n100;\n150;\n200")
         self.assertEqual(100 + 150 + 200, result)
 
+    def test_add_to_raise_exception_with_negative_numbers(self):
+        """
+        Test Cases for  raising exception for negative number
+        """
+
+        with self.assertRaises(ValueError) as context:
+            self.calculator.add("1,-2,3")
+        self.assertEqual(str(context.exception), "Negative numbers not allowed: -2")
+
+        with self.assertRaises(ValueError) as context:
+            result = self.calculator.add("//;\n-2;150;-200")
+        self.assertEqual(
+            f"Negative numbers not allowed: -2, -200", str(context.exception)
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
