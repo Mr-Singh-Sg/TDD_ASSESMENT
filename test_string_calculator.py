@@ -99,6 +99,18 @@ class TestStringCalculator(unittest.TestCase):
         result = self.calculator.add("//;\n5,10,15")
         self.assertEqual(0, result)
 
+    def test_add_invalid_input(self):
+        """
+        Test Case for invalid input
+        """
+        with self.assertRaises(ValueError) as context:
+            result = self.calculator.add("//\n-2;150;-200")
+        self.assertEqual(f"Invalid input format", str(context.exception))
+
+        with self.assertRaises(ValueError) as context:
+            result = self.calculator.add("//\n-2;150;-200asdd, .asd")
+        self.assertEqual(f"Invalid input format", str(context.exception))
+
 
 if __name__ == "__main__":
     unittest.main()
