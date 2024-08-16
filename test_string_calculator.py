@@ -76,6 +76,29 @@ class TestStringCalculator(unittest.TestCase):
             f"Negative numbers not allowed: -2, -200", str(context.exception)
         )
 
+    def test_add_to_support_different_delimiters(self):
+        """
+        Test Cases for  different delimiters
+        """
+
+        result = self.calculator.add("//;\n100;150;200")
+        self.assertEqual(450, result)
+
+        result = self.calculator.add("//:\n300:400:500")
+        self.assertEqual(1200, result)
+
+        result = self.calculator.add("//|\n200|300|400")
+        self.assertEqual(900, result)
+
+        result = self.calculator.add("//-\n85-90-95")
+        self.assertEqual(270, result)
+
+        result = self.calculator.add("//.\n5.10.15")
+        self.assertEqual(30, result)
+
+        result = self.calculator.add("//;\n5,10,15")
+        self.assertEqual(0, result)
+
 
 if __name__ == "__main__":
     unittest.main()
